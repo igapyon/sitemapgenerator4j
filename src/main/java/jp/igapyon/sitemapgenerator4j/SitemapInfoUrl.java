@@ -39,18 +39,18 @@ public class SitemapInfoUrl {
      * yearly
      * never
      */
-    private String changefreq = null;
+    private Changefreq changefreq = null;
 
     /**
      * 0.8
      */
     private String priority = null;
 
-    public String getChangefreq() {
+    public Changefreq getChangefreq() {
         return changefreq;
     }
 
-    public void setChangefreq(String changefreq) {
+    public void setChangefreq(Changefreq changefreq) {
         this.changefreq = changefreq;
     }
 
@@ -76,5 +76,9 @@ public class SitemapInfoUrl {
 
     public void setLastmod(Date lastmod) {
         this.lastmod = lastmod;
+    }
+
+    public static enum Changefreq {
+        Always, Hourly, Daily, Weekly, Monthly, Yearly, Never;
     }
 }

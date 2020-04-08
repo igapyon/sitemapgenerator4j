@@ -39,7 +39,7 @@ public class SitemapGenerator4jTest {
             info.addUrl(url);
             url.setLoc("http://example.com/");
             url.setLastmod(new Date());
-            url.setChangefreq("monthly");
+            url.setChangefreq(SitemapInfoUrl.Changefreq.Daily);
             url.setPriority("0.8");
         }
         {

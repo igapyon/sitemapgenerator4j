@@ -98,7 +98,7 @@ public class SitemapGenerator4j {
                 if (url.getChangefreq() != null) {
                     Element eleLoc = document.createElement("changefreq");
                     eleUrl.appendChild(eleLoc);
-                    eleLoc.appendChild(document.createTextNode(url.getChangefreq()));
+                    eleLoc.appendChild(document.createTextNode(url.getChangefreq().toString().toLowerCase()));
                 }
 
                 if (url.getPriority() != null) {
