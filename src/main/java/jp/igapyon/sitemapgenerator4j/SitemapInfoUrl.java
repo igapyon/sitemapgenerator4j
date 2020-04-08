@@ -18,12 +18,11 @@ package jp.igapyon.sitemapgenerator4j;
 import java.util.Date;
 
 /**
- * Entry url of Sitemap.
- * 
- * @author toshiki
+ * URL of Sitemap information.
  */
 public class SitemapInfoUrl {
     private String loc = "http://example.com/";
+
     /**
      * Updated date.
      */
