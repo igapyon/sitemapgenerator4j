@@ -32,8 +32,9 @@ public class SitemapGenerator4jTest {
      * @throws IOException
      */
     @Test
-    public void test() throws Exception {
+    public void test() throws IOException {
         SitemapInfo info = new SitemapInfo();
+
         {
             SitemapInfoUrl url = new SitemapInfoUrl();
             info.addUrl(url);
@@ -42,6 +43,7 @@ public class SitemapGenerator4jTest {
             url.setChangefreq(SitemapInfoUrl.Changefreq.Daily);
             url.setPriority("0.8");
         }
+
         {
             SitemapInfoUrl url = new SitemapInfoUrl();
             info.addUrl(url);

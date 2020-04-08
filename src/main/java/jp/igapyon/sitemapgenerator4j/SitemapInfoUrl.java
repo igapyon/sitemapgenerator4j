@@ -23,6 +23,9 @@ import java.util.Date;
  * @see https://www.sitemaps.org/protocol.html
  */
 public class SitemapInfoUrl {
+    /**
+     * loc of url.
+     */
     private String loc = "http://example.com/";
 
     /**
@@ -46,38 +49,81 @@ public class SitemapInfoUrl {
      */
     private String priority = null;
 
+    /**
+     * Get freq of change.
+     *
+     * @return Freq of change.
+     */
     public Changefreq getChangefreq() {
         return changefreq;
     }
 
+    /**
+     * Set change freq.
+     * 
+     * @param changefreq Freq of change.
+     */
     public void setChangefreq(Changefreq changefreq) {
         this.changefreq = changefreq;
     }
 
+    /**
+     * Get priority string.
+     * 
+     * @return Priority.
+     */
     public String getPriority() {
         return priority;
     }
 
+    /**
+     * Set priority string. ex: 0.8
+     *    
+     * @param priority Priority string. ex: 0.8
+     */
     public void setPriority(String priority) {
         this.priority = priority;
     }
 
+    /**
+     * Get loc url.
+     * 
+     * @return oc URL: ex: http://example.com/
+     */
     public String getLoc() {
         return loc;
     }
 
+    /**
+     * Set loc url. [required]
+     * 
+     * @param loc URL: ex: http://example.com/
+     */
     public void setLoc(String loc) {
         this.loc = loc;
     }
 
+    /**
+     * Get last modified.
+     * 
+     * @return Date of last modified.
+     */
     public Date getLastmod() {
         return lastmod;
     }
 
+    /**
+     * Set last modified.
+     * 
+     * @param lastmod Date of last modified.
+     */
     public void setLastmod(Date lastmod) {
         this.lastmod = lastmod;
     }
 
+    /**
+     * Enum of changefreq.
+     */
     public static enum Changefreq {
         Always, Hourly, Daily, Weekly, Monthly, Yearly, Never;
     }
