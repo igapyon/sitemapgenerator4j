@@ -22,7 +22,7 @@ import java.util.Date;
  * 
  * @author toshiki
  */
-public class SitemapEntryUrl {
+public class SitemapInfoUrl {
     private String loc = "http://example.com/";
     /**
      * Updated date.

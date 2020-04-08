@@ -43,7 +43,7 @@ import org.w3c.dom.Element;
  * @author Toshiki Iga
  */
 public class SitemapGenerator4j {
-    public void write(SitemapEntry entry, File fileWrite) throws IOException {
+    public void write(SitemapInfo entry, File fileWrite) throws IOException {
         try {
             final DocumentBuilder builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
             Document document = builder.newDocument();
@@ -52,7 +52,7 @@ public class SitemapGenerator4j {
             document.appendChild(eleRoot);
             eleRoot.setAttribute("xmlns", "http://www.sitemaps.org/schemas/sitemap/0.9");
 
-            for (SitemapEntryUrl url : entry.getUrlList()) {
+            for (SitemapInfoUrl url : entry.getUrlList()) {
                 {
                     Element eleUrl = document.createElement("url");
                     eleRoot.appendChild(eleUrl);

@@ -19,14 +19,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Entry of Sitemap.
- * 
- * @author toshiki
+ * Sitemap information.
  */
-public class SitemapEntry {
-    private List<SitemapEntryUrl> entryUrlList = new ArrayList<SitemapEntryUrl>();
+public class SitemapInfo {
+    private List<SitemapInfoUrl> sitemapInfoUrlList = new ArrayList<SitemapInfoUrl>();
 
-    public List<SitemapEntryUrl> getUrlList() {
-        return entryUrlList;
+    public void addUrl(SitemapInfoUrl url) {
+        getUrlList().add(url);
+    }
+
+    public List<SitemapInfoUrl> getUrlList() {
+        return sitemapInfoUrlList;
     }
 }

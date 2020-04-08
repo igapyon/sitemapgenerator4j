@@ -34,20 +34,20 @@ public class SitemapGeneratorSimpleTest {
      */
     @Test
     public void test() throws Exception {
-        SitemapEntry entry = new SitemapEntry();
+        SitemapInfo info = new SitemapInfo();
         {
-            SitemapEntryUrl url = new SitemapEntryUrl();
-            entry.getUrlList().add(url);
+            SitemapInfoUrl url = new SitemapInfoUrl();
+            info.addUrl(url);
             url.setLoc("http://example.com/");
             url.setLastmod(new Date());
             url.setChangefreq("monthly");
             url.setPriority("0.8");
         }
         {
-            SitemapEntryUrl url = new SitemapEntryUrl();
-            entry.getUrlList().add(url);
+            SitemapInfoUrl url = new SitemapInfoUrl();
+            info.addUrl(url);
         }
 
-        new SitemapGenerator4j().write(entry, new File("./target/sitemap.xml"));
+        new SitemapGenerator4j().write(info, new File("./target/sitemap.xml"));
     }
 }
