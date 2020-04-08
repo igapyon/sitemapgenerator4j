@@ -18,7 +18,9 @@ package jp.igapyon.sitemapgenerator4j;
 import java.util.Date;
 
 /**
- * URL of Sitemap information.
+ * Sitemap URL information.
+ * 
+ * @see https://www.sitemaps.org/protocol.html
  */
 public class SitemapInfoUrl {
     private String loc = "http://example.com/";

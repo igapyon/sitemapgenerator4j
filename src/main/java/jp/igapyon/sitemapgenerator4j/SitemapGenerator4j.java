@@ -40,68 +40,86 @@ import org.w3c.dom.Element;
  * Sitemap Generator for Java.
  * 
  * @see https://www.sitemaps.org/protocol.html
- * @author Toshiki Iga
  */
 public class SitemapGenerator4j {
-    public void write(SitemapInfo entry, File fileWrite) throws IOException {
+    /**
+     * Write Sitemap into file.
+     * 
+     * @param info Sitemap info.
+     * @param fileWrite File to write.
+     * @throws IOException IO related exception occured.
+     */
+    public void write(SitemapInfo info, File fileWrite) throws IOException {
+        OutputStream outStream = new BufferedOutputStream(new FileOutputStream(fileWrite));
         try {
+            write(info, outStream);
+            outStream.flush();
+        } finally {
+            outStream.close();
+        }
+    }
+
+    /**
+     * Write Sitemap into stream.
+     * 
+     * @param info Sitemap info.
+     * @param outStream output stream.
+     * @throws IOException IO related exception occured.
+     */
+    public void write(SitemapInfo info, OutputStream outStream) throws IOException {
+        try {
+            // Create XML document
             final DocumentBuilder builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
             Document document = builder.newDocument();
 
+            // Create root XML element.
             Element eleRoot = document.createElement("urlset");
             document.appendChild(eleRoot);
             eleRoot.setAttribute("xmlns", "http://www.sitemaps.org/schemas/sitemap/0.9");
 
-            for (SitemapInfoUrl url : entry.getUrlList()) {
+            for (SitemapInfoUrl url : info.getUrlList()) {
+                Element eleUrl = document.createElement("url");
+                eleRoot.appendChild(eleUrl);
+
                 {
-                    Element eleUrl = document.createElement("url");
-                    eleRoot.appendChild(eleUrl);
+                    Element eleLoc = document.createElement("loc");
+                    eleUrl.appendChild(eleLoc);
+                    eleLoc.appendChild(document.createTextNode(url.getLoc()));
+                }
 
-                    {
-                        Element eleLoc = document.createElement("loc");
-                        eleUrl.appendChild(eleLoc);
-                        eleLoc.appendChild(document.createTextNode(url.getLoc()));
-                    }
+                if (url.getLastmod() != null) {
+                    Element eleLoc = document.createElement("lastmod");
+                    eleUrl.appendChild(eleLoc);
 
-                    if (url.getLastmod() != null) {
-                        Element eleLoc = document.createElement("lastmod");
-                        eleUrl.appendChild(eleLoc);
+                    SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX");
+                    eleLoc.appendChild(document.createTextNode(df.format(url.getLastmod())));
+                }
 
-                        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX");
-                        eleLoc.appendChild(document.createTextNode(df.format(url.getLastmod())));
-                    }
+                if (url.getChangefreq() != null) {
+                    Element eleLoc = document.createElement("changefreq");
+                    eleUrl.appendChild(eleLoc);
+                    eleLoc.appendChild(document.createTextNode(url.getChangefreq()));
+                }
 
-                    if (url.getChangefreq() != null) {
-                        Element eleLoc = document.createElement("changefreq");
-                        eleUrl.appendChild(eleLoc);
-                        eleLoc.appendChild(document.createTextNode(url.getChangefreq()));
-                    }
-
-                    if (url.getPriority() != null) {
-                        Element eleLoc = document.createElement("priority");
-                        eleUrl.appendChild(eleLoc);
-                        eleLoc.appendChild(document.createTextNode(url.getPriority()));
-                    }
+                if (url.getPriority() != null) {
+                    Element eleLoc = document.createElement("priority");
+                    eleUrl.appendChild(eleLoc);
+                    eleLoc.appendChild(document.createTextNode(url.getPriority()));
                 }
             }
 
-            {
-                // write xml
-                final Transformer transformer = TransformerFactory.newInstance().newTransformer();
-                final DOMSource source = new DOMSource(document);
-                final OutputStream outStream = new BufferedOutputStream(new FileOutputStream(fileWrite));
-                final StreamResult target = new StreamResult(outStream);
-                transformer.setOutputProperty(OutputKeys.INDENT, "yes");
-                transformer.transform(source, target);
-            }
-        } catch (IOException ex) {
-            ex.printStackTrace();
+            // write XML to stream.
+            final Transformer transformer = TransformerFactory.newInstance().newTransformer();
+            final DOMSource source = new DOMSource(document);
+            final StreamResult target = new StreamResult(outStream);
+            transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+            transformer.transform(source, target);
         } catch (ParserConfigurationException ex) {
-            ex.printStackTrace();
+            throw new IOException(ex);
         } catch (TransformerException ex) {
-            ex.printStackTrace();
+            throw new IOException(ex);
         } catch (TransformerFactoryConfigurationError ex) {
-            ex.printStackTrace();
+            throw new IOException(ex);
         }
     }
 }
