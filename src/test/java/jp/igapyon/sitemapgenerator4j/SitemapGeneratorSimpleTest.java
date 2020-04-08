@@ -17,6 +17,7 @@ package jp.igapyon.sitemapgenerator4j;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Date;
 
 import org.junit.Test;
 
@@ -38,7 +39,7 @@ public class SitemapGeneratorSimpleTest {
             SitemapEntryUrl url = new SitemapEntryUrl();
             entry.getUrlList().add(url);
             url.setLoc("http://example.com/");
-            url.setLastmod("2015-01-01");
+            url.setLastmod(new Date());
             url.setChangefreq("monthly");
             url.setPriority("0.8");
         }

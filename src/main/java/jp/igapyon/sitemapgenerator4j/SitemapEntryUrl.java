@@ -15,6 +15,8 @@
  */
 package jp.igapyon.sitemapgenerator4j;
 
+import java.util.Date;
+
 /**
  * Entry url of Sitemap.
  * 
@@ -23,9 +25,9 @@ package jp.igapyon.sitemapgenerator4j;
 public class SitemapEntryUrl {
     private String loc = "http://example.com/";
     /**
-     * "2005-01-01"
+     * Updated date.
      */
-    private String lastmod = null;
+    private Date lastmod = null;
 
     /**
      * always
@@ -67,11 +69,11 @@ public class SitemapEntryUrl {
         this.loc = loc;
     }
 
-    public String getLastmod() {
+    public Date getLastmod() {
         return lastmod;
     }
 
-    public void setLastmod(String lastmod) {
+    public void setLastmod(Date lastmod) {
         this.lastmod = lastmod;
     }
 }

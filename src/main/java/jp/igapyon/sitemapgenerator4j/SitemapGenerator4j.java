@@ -20,6 +20,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.text.SimpleDateFormat;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -57,23 +58,17 @@ public class SitemapGenerator4j {
                     eleRoot.appendChild(eleUrl);
 
                     {
-                        // TODO short of entity escaped
                         Element eleLoc = document.createElement("loc");
                         eleUrl.appendChild(eleLoc);
-                        String encodedLoc = url.getLoc();
-                        encodedLoc = encodedLoc.replaceAll("&", "&amp;");
-                        encodedLoc = encodedLoc.replaceAll("'", "&apos;");
-                        encodedLoc = encodedLoc.replaceAll("\"", "&quot;");
-                        encodedLoc = encodedLoc.replaceAll(">", "&gt;");
-                        encodedLoc = encodedLoc.replaceAll("<", "&lt;");
-
-                        eleLoc.appendChild(document.createTextNode(encodedLoc));
+                        eleLoc.appendChild(document.createTextNode(url.getLoc()));
                     }
 
                     if (url.getLastmod() != null) {
                         Element eleLoc = document.createElement("lastmod");
                         eleUrl.appendChild(eleLoc);
-                        eleLoc.appendChild(document.createTextNode(url.getLastmod()));
+
+                        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX");
+                        eleLoc.appendChild(document.createTextNode(df.format(url.getLastmod())));
                     }
 
                     if (url.getChangefreq() != null) {
