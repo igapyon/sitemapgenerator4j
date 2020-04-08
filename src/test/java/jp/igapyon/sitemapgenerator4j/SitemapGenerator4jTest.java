@@ -23,9 +23,8 @@ import org.junit.Test;
 
 /**
  * @see https://www.sitemaps.org/protocol.html
- * @author Toshiki Iga
  */
-public class SitemapGeneratorSimpleTest {
+public class SitemapGenerator4jTest {
     /**
      * Simple sample
      * 
