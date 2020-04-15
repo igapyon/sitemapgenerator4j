@@ -20,7 +20,10 @@ import java.util.Date;
 /**
  * Sitemap URL information.
  * 
- * @see https://www.sitemaps.org/protocol.html
+ * <p>Related link</p>
+ * <ul>
+ * <li>https://www.sitemaps.org/protocol.html</li>
+ * </ul>
  */
 public class SitemapInfoUrl {
     /**
@@ -125,6 +128,19 @@ public class SitemapInfoUrl {
      * Enum of changefreq.
      */
     public static enum Changefreq {
-        Always, Hourly, Daily, Weekly, Monthly, Yearly, Never;
+        /** change each time they are accessed. */
+        Always,
+        /** change hourly. */
+        Hourly,
+        /** change daily. */
+        Daily,
+        /** change weekly. */
+        Weekly,
+        /** change monthly. */
+        Monthly,
+        /** change yearly. */
+        Yearly,
+        /** never change. */
+        Never;
     }
 }
